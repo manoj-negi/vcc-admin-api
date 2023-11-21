@@ -2,19 +2,34 @@ package models
 
 import(
 	"time"
+	"github.com/golang-jwt/jwt/v5"
 )
+type Role struct{
+	ID   int   `json:"id"`
+	Name string `json:"name"`
+}
 
-// type User struct {
-// 	Id             int    `json:"id"`
-// 	First_name     string `json:"first_name"`
-// 	Last_name      string `json:"last_name"`
-// 	Email          string `json:"email"`
-// 	Password       string `json:"password"`
-// 	Age            int    `json:"age"`
-// 	Phone_no       int    `json:"phone_no"`
-// 	Secret_code    string `json:"secret_code"`
-// 	Role_id        int    `json:"role_id"`
-//}
+type Product struct{
+	ID   int   `json:"id"`
+	Name string `json:"name"`
+	ReferralLink string `json:"referral_link"`
+	IsActive bool `json:"is_active"`
+	CreatedAt          time.Time `json:"created_at"`  
+	UpdatedAt          time.Time `json:"updated_at"`
+}
+
+type Country struct{
+	Code   int   `json:"code"`
+	Name string `json:"name"`
+	ContinentName string `json:"continent_name"`
+}
+
+type Claims struct {
+	UserID    int    `json:"userID"`
+	Email     string `json:"email"`
+	jwt.RegisteredClaims
+}
+
 type User struct {
 	ID                 int      `json:"id"`
 	Username           string   `json:"username"`
@@ -42,19 +57,3 @@ type JsonResponse struct {
 	StatusCode int         `json:"status_code"`
 }
 
-// type Role struct{
-// 	Id int `json:"id"`
-// 	Role string `json:"role_name"`
-// }
-// type Permissions struct{
-// 	Id int `json:"id"`
-// 	Permission string `json:"permission_name"`
-// }
-// type Role_Permission struct {
-// 	Id int `json:"id"`
-// 	Role_id int `json:"role_id"`
-// 	Permission_id int `json:"permission_id"`
-// }
-// type Images struct{
-// 	Image_url string `gorm:"image_url"`
-// }
