@@ -3,20 +3,23 @@ package routes
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/keshav/fiber/controllers"
-	//"github.com/keshav/fiber/middleware"
 )
 
 func SetupUserRoutes(app *fiber.App) {
+
+	app.Post("/api/v1/login", controllers.HandlerAdminLogin)
+
+	app.Get("/api/v1/country", controllers.HandlerGetAllCountry)
+
+	app.Get("/api/v1/role", controllers.HandlerGetAllRole)
+
+	app.Get("/api/v1/product", controllers.HandlerGetAllProduct)
 	
-	// app.Post("/signup", controllers.UserSignUp)
-	// app.Post("/login", controllers.UserLogin)
-	// app.Put("/users/:id", middleware.RequireAuth, controllers.UpdateOneUser)
-	// app.Delete("/users/:id", middleware.RequireAuth, controllers.Deletedata)
-	// app.Get("/verifymail/:id/:secret_code", controllers.VerifyApi)
 	app.Get("/api/v1/user", controllers.HandlerGetAllUser)
 	app.Post("/api/v1/user", controllers.HandlerCreateUser)
+	app.Get("/api/v1/finduser/:id", controllers.HandlerGetOneUser)
 	app.Get("/api/v1/userlisting", controllers.HandlerUserListing)
-	app.Post("/api/v1/userpaginate", controllers.HandlerGetUsersPaginatedPost)
+	app.Get("/api/v1/users", controllers.HandlerUserPagination)
 	app.Put("/api/v1/user/:id", controllers.HandleUpdateUser)
 	app.Delete("/api/v1/user/:id", controllers.HandleDeleteUser)
 }
